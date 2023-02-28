@@ -1,8 +1,10 @@
-const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
+const checkPossibleMoves = (activePlayers, setActivePlayers) => {
   const diceResult = Math.floor(Math.random() * 6 + 1);
 
   let availableMoves = [];
-  otherPlayers.splice(otherPlayers.indexOf(player), 1);
+  let player = activePlayers[0];
+  let otherPlayers = [...activePlayers];
+  otherPlayers.shift();
 
   let otherPlayersPawnScore = [];
 
@@ -63,10 +65,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
             pawnScore: pawnScore,
             pawnScoreAdd: 1,
             executeMove: () => {
-              setPlayerState[player.color]({
-                ...player,
-                [currPawn]: player.startPos,
-              });
+              activePlayers[0][currPawn] = player.startPos;
+              setActivePlayers(activePlayers);
             },
           });
         }
@@ -90,10 +90,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
               executeMove: () => {
-                setPlayerState[player.color]({
-                  ...player,
-                  [currPawn]: player[currPawn] + diceResult,
-                });
+                activePlayers[0][currPawn] = player[currPawn] + diceResult;
+                setActivePlayers(activePlayers);
               },
             });
           } else {
@@ -104,10 +102,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
               executeMove: () => {
-                setPlayerState[player.color]({
-                  ...player,
-                  [currPawn]: player[currPawn] + diceResult,
-                });
+                activePlayers[0][currPawn] = player[currPawn] + diceResult;
+                setActivePlayers(activePlayers);
               },
             });
           }
@@ -129,11 +125,9 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
                 pawn: "pawn" + i,
                 moveScore: 8,
                 executeMove: () => {
-                  setPlayerState[player.color]({
-                    ...player,
-                    [currPawn]: placeInHouse,
-                    score: player.score + 100,
-                  });
+                  activePlayers[0][currPawn] = placeInHouse;
+                  activePlayers[0].score = player.score + 100;
+                  setActivePlayers(activePlayers);
                 },
               });
             }
@@ -159,10 +153,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
               executeMove: () => {
-                setPlayerState[player.color]({
-                  ...player,
-                  [currPawn]: setPose,
-                });
+                activePlayers[0][currPawn] = setPose;
+                setActivePlayers(activePlayers);
               },
             });
           } else {
@@ -173,10 +165,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
               executeMove: () => {
-                setPlayerState[player.color]({
-                  ...player,
-                  [currPawn]: setPose,
-                });
+                activePlayers[0][currPawn] = setPose;
+                setActivePlayers(activePlayers);
               },
             });
           }
@@ -202,11 +192,9 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
                 pawn: "pawn" + i,
                 moveScore: 8,
                 executeMove: () => {
-                  setPlayerState[player.color]({
-                    ...player,
-                    [currPawn]: placeInHouse,
-                    score: player.score + 100,
-                  });
+                  activePlayers[0][currPawn] = placeInHouse;
+                  activePlayers[0].score = player.score + 100;
+                  setActivePlayers(activePlayers);
                 },
               });
             }
@@ -233,10 +221,8 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
             pawnScore: pawnScore,
             pawnScoreAdd: diceResult,
             executeMove: () => {
-              setPlayerState[player.color]({
-                ...player,
-                [currPawn]: placeInHouse,
-              });
+              activePlayers[0][currPawn] = placeInHouse;
+              setActivePlayers(activePlayers);
             },
           });
         }
@@ -289,16 +275,16 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
                 opoonentPawnScore: otherPlayersPawnScore[i],
                 opponentPawnScoreCapture: otherPlayerPawnScore,
                 executeMove: () => {
-                  setPlayerState[player.color]({
-                    ...player,
-                    [currPawn]: player.startPos,
-                  });
+                  activePlayers[0][currPawn] = player.startPos;
+                  setActivePlayers(activePlayers);
                 },
                 moveResults: () => {
-                  setPlayerState[otherPlayers[i].color]((previousState) => ({
+                  activePlayers[i + 1][otherPlayerPawn] =
+                    j + otherPlayers[i].color[0] + "s";
+                  setActivePlayers((previousState) => [
                     ...previousState,
-                    [otherPlayerPawn]: j + otherPlayers[i].color[0] + "s",
-                  }));
+                    activePlayers,
+                  ]);
                 },
               });
             }
@@ -327,16 +313,16 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
                   opoonentPawnScore: otherPlayersPawnScore[i],
                   opponentPawnScoreCapture: otherPlayerPawnScore,
                   executeMove: () => {
-                    setPlayerState[player.color]({
-                      ...player,
-                      [currPawn]: player[currPawn] + diceResult,
-                    });
+                    activePlayers[0][currPawn] = player[currPawn] + diceResult;
+                    setActivePlayers(activePlayers);
                   },
                   moveResults: () => {
-                    setPlayerState[otherPlayers[i].color]((previousState) => ({
+                    activePlayers[i + 1][otherPlayerPawn] =
+                      j + otherPlayers[i].color[0] + "s";
+                    setActivePlayers((previousState) => [
                       ...previousState,
-                      [otherPlayerPawn]: j + otherPlayers[i].color[0] + "s",
-                    }));
+                      activePlayers,
+                    ]);
                   },
                 });
               }
@@ -380,16 +366,16 @@ const checkPossibleMoves = (player, otherPlayers, setPlayerState) => {
                 opoonentPawnScore: otherPlayersPawnScore[i],
                 opponentPawnScoreCapture: otherPlayerPawnScore,
                 executeMove: () => {
-                  setPlayerState[player.color]({
-                    ...player,
-                    [currPawn]: setPose,
-                  });
+                  activePlayers[0][currPawn] = setPose;
+                  setActivePlayers(activePlayers);
                 },
                 moveResults: () => {
-                  setPlayerState[otherPlayers[i].color]((previousState) => ({
+                  activePlayers[i + 1][otherPlayerPawn] =
+                    j + otherPlayers[i].color[0] + "s";
+                  setActivePlayers((previousState) => [
                     ...previousState,
-                    [otherPlayerPawn]: j + otherPlayers[i].color[0] + "s",
-                  }));
+                    activePlayers,
+                  ]);
                 },
               });
             }
