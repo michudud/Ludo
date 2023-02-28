@@ -1,4 +1,4 @@
-const checkPossibleMoves = (activePlayers, setActivePlayers) => {
+export const checkPossibleMoves = (activePlayers, setActivePlayers) => {
   const diceResult = Math.floor(Math.random() * 6 + 1);
 
   let availableMoves = [];
@@ -434,5 +434,3 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
     moves: filteredMoves,
   };
 };
-
-export default checkPossibleMoves;
