@@ -1,9 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import PlayingArea from "./PlayingArea";
+import SetupMenu from "./SetupMenu";
 
 const App = () => {
-  return <PlayingArea />;
+  return <SetupMenu />;
 };
 
 const rootDiv = document.getElementById("root");

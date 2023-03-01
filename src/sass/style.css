@@ -9,6 +9,93 @@ body {
   background-color: #301d17;
 }
 
+.SetupMenu {
+  width: 1250px;
+  padding: 25px;
+  background-color: #b68e65;
+  border-radius: 25px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.SetupMenu .smLabel {
+  background-color: #56342a;
+  color: #b68e65;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin: 25px;
+  border-radius: 25px;
+  padding: 20px 0 20px 0;
+}
+.SetupMenu .smPlay {
+  background-color: #56342a;
+  color: #b68e65;
+  font-size: 32px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  margin: 25px;
+  padding: 20px 0 20px 0;
+  cursor: pointer;
+}
+.SetupMenu .playersSetups {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.SetupMenu .playersSetups .playerSetup {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #56342a;
+  margin: 25px;
+  border-radius: 25px;
+}
+.SetupMenu .playersSetups .playerSetup label {
+  width: 200px;
+  padding: 10px 0 10px 0;
+  border-radius: 5px;
+  background-color: #b68e65;
+  color: #301d17;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+.SetupMenu .playersSetups .playerSetup select {
+  margin: 25px 0 25px 0;
+  width: 200px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #b68e65;
+  color: #301d17;
+}
+.SetupMenu .playersSetups .playerSetup .playerBg {
+  width: 200px;
+  height: 200px;
+  margin: 25px 0 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+.SetupMenu .playersSetups .playerSetup .playerBg .playerPawn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 10px solid;
+  text-align: center;
+  box-shadow: 0px 0px 15px 0px rgb(0, 0, 0);
+}
+
 .PlayingArea {
   display: flex;
   width: 1300px;
