@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   redPlayer,
   greenPlayer,
@@ -8,13 +8,27 @@ import {
 
 const SetupMenu = () => {
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
+  let activePlayers = [];
 
-  const startGame = () => {};
+  const playersSetupRef = useRef(null);
+
+  const startGame = () => {
+    for (let i = 0; i < 4; i++) {
+      let val = playersSetupRef.current.children[i].lastElementChild.value;
+      if (val === "Player") {
+        menuPlayers[i].user = val;
+        activePlayers.push(menuPlayers[i]);
+      } else if (val === "AI") {
+        menuPlayers[i].user = val;
+        activePlayers.push(menuPlayers[i]);
+      }
+    }
+  };
 
   return (
     <div className="SetupMenu">
       <div className="smLabel">Choose Who Plays With Which Color</div>
-      <div className="playersSetups">
+      <div className="playersSetups" ref={playersSetupRef}>
         {menuPlayers.map((player) => {
           return (
             <div className="playerSetup">
@@ -40,7 +54,7 @@ const SetupMenu = () => {
           );
         })}
       </div>
-      <button onClick={startGame()} className="smPlay">
+      <button onClick={startGame} className="smPlay">
         Play
       </button>
     </div>

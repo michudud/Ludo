@@ -1,6 +1,7 @@
 export const redPlayer = {
   color: "red",
   color2: "#EA4335",
+  user: "Player",
   score: 0,
   startPos: 1,
   endPos: 40,
@@ -14,6 +15,7 @@ export const redPlayer = {
 export const greenPlayer = {
   color: "green",
   color2: "#34A853",
+  user: "Player",
   score: 0,
   startPos: 11,
   endPos: 10,
@@ -27,6 +29,7 @@ export const greenPlayer = {
 export const yellowPlayer = {
   color: "yellow",
   color2: "#FBBC05",
+  user: "Player",
   score: 0,
   startPos: 21,
   endPos: 20,
@@ -40,6 +43,7 @@ export const yellowPlayer = {
 export const bluePlayer = {
   color: "blue",
   color2: "#4285F4",
+  user: "Player",
   score: 0,
   startPos: 31,
   endPos: 30,
