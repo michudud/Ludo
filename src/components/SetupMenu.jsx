@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { setPlayers } from "./playersSlice";
 import {
   redPlayer,
   greenPlayer,
@@ -7,6 +9,8 @@ import {
 } from "./functions/playersData";
 
 const SetupMenu = () => {
+  const dispatch = useDispatch();
+
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
   let activePlayers = [];
 
@@ -23,6 +27,7 @@ const SetupMenu = () => {
         activePlayers.push(menuPlayers[i]);
       }
     }
+    dispatch(setPlayers(activePlayers));
   };
 
   return (
@@ -31,7 +36,7 @@ const SetupMenu = () => {
       <div className="playersSetups" ref={playersSetupRef}>
         {menuPlayers.map((player) => {
           return (
-            <div className="playerSetup">
+            <div className="playerSetup" key={player.color}>
               <div
                 className="playerBg"
                 style={{ backgroundColor: player.color2 }}
