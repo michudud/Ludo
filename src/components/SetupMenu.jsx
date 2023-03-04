@@ -14,9 +14,9 @@ const SetupMenu = () => {
   const [menuOpen, setMenuOpen] = useState(true);
 
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
-  let activePlayers = [];
 
   const startGame = () => {
+    let activePlayers = [];
     for (let i = 0; i < 4; i++) {
       let val = playersSetupRef.current.children[i].lastElementChild.value;
       if (val === "Player") {
@@ -27,8 +27,10 @@ const SetupMenu = () => {
         activePlayers.push(menuPlayers[i]);
       }
     }
-    dispatch(setPlayers(activePlayers));
-    setMenuOpen(!menuOpen);
+    if (activePlayers.length >= 2) {
+      dispatch(setPlayers(activePlayers));
+      setMenuOpen(!menuOpen);
+    }
   };
 
   return (
