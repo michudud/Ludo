@@ -2,7 +2,6 @@ import React from "react";
 
 const BoardField = ({ field, pawnsOnField }) => {
   let fieldColor;
-
   if ((typeof field === "string" && field.includes("r")) || field === 1) {
     fieldColor = "#EA4335";
   } else if (
@@ -28,10 +27,27 @@ const BoardField = ({ field, pawnsOnField }) => {
     fieldColor = "#B68E65";
   }
 
+  let fieldTemplate = "1fr / 1fr";
+  let pawnSize = 26;
+  if (pawnsOnField.length === 2) {
+    fieldTemplate = "repeat(1, 1fr) / repeat(2, 1fr)";
+  } else if (pawnsOnField.length === 3 || pawnsOnField.length === 4) {
+    fieldTemplate = "repeat(2, 1fr) / repeat(2, 1fr)";
+  } else if (pawnsOnField.length === 5 || pawnsOnField.length === 6) {
+    fieldTemplate = "repeat(3, 1fr) / repeat(2, 1fr)";
+    pawnSize = 20;
+  } else if (pawnsOnField.length > 6) {
+    fieldTemplate = "repeat(3, 1fr) / repeat(3, 1fr)";
+    pawnSize = 20;
+  }
+
   return (
     <div
       className="BoardField"
-      style={{ backgroundColor: fieldColor }}
+      style={{
+        backgroundColor: fieldColor,
+        gridTemplate: fieldTemplate,
+      }}
       key={Math.random()}
     >
       {pawnsOnField.length > 0
@@ -39,7 +55,12 @@ const BoardField = ({ field, pawnsOnField }) => {
             return (
               <div
                 className="Pawn"
-                style={{ backgroundColor: color }}
+                style={{
+                  backgroundColor: color,
+                  width: pawnSize + "px",
+                  height: pawnSize + "px",
+                  borderRadius: pawnSize / 2 + "px",
+                }}
                 key={Math.random()}
               ></div>
             );

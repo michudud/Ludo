@@ -32,7 +32,7 @@ const SetupMenu = () => {
   };
 
   return (
-    <div className="SetupMenu">
+    <div className={`SetupMenu ${menuOpen ? "" : "closed"}`}>
       <div className="smLabel">Choose Who Plays With Which Color</div>
       <div className="playersSetups" ref={playersSetupRef}>
         {menuPlayers.map((player) => {
