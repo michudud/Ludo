@@ -9,13 +9,21 @@ body {
   background-color: #301d17;
 }
 
+.Game {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .SetupMenu {
   width: 1250px;
+  height: 820px;
   padding: 25px;
   background-color: #b68e65;
-  border-radius: 25px;
-  margin: auto;
-  margin-top: 100px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,14 +110,15 @@ body {
 
 .PlayingArea {
   display: flex;
-  width: 1300px;
+  width: 1250px;
+  height: 820x;
   flex-direction: row;
-  margin: auto;
-  margin-top: 20px;
-  border: 6px solid #b68e65;
+  border: 10px solid #b68e65;
+  border-radius: 10px;
 }
 .PlayingArea .PlayMenu {
   height: 800px;
+  width: 400px;
 }
 .PlayingArea .PlayMenu p {
   width: 200px;
@@ -144,17 +153,18 @@ body {
   border: 2px solid #b68e65;
   text-align: center;
 }
-.PlayingArea .MovesMenu {
+.PlayingArea .PlayMenu .MovesMenu {
   margin-top: 50px;
 }
-.PlayingArea .MovesMenu p {
-  width: 400px;
+.PlayingArea .PlayMenu .MovesMenu p {
+  width: 350px;
   color: #b68e65;
 }
 
 .Board {
   width: 800px;
   height: 800px;
+  box-sizing: border-box;
   background-color: #301d17;
   display: grid;
   grid-template: repeat(11, 1fr)/repeat(11, 1fr);
@@ -162,17 +172,18 @@ body {
   border: 2px solid #301d17;
 }
 .Board .BoardField {
-  background-color: white;
   text-align: center;
   border-radius: 5px;
-  display: flex;
+  display: grid;
+  grid-template: repeat(2, 1fr)/repeat(2, 1fr);
+  justify-items: center;
   align-items: center;
-  justify-content: center;
 }
 .Board .BoardField .Pawn {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background-color: black;
-  border-radius: 15px;
-  border: 2px solid black;
+  border-radius: 13px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px 0px rgb(0, 0, 0);
 }/*# sourceMappingURL=style.css.map */

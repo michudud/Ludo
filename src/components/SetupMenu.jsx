@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPlayers } from "./playersSlice";
 import {
@@ -10,11 +10,11 @@ import {
 
 const SetupMenu = () => {
   const dispatch = useDispatch();
+  const playersSetupRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
   let activePlayers = [];
-
-  const playersSetupRef = useRef(null);
 
   const startGame = () => {
     for (let i = 0; i < 4; i++) {
@@ -28,6 +28,7 @@ const SetupMenu = () => {
       }
     }
     dispatch(setPlayers(activePlayers));
+    setMenuOpen(!menuOpen);
   };
 
   return (
