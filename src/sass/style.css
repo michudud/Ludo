@@ -205,7 +205,7 @@ body {
 .PlayingArea .PlayMenu .MovesMenu {
   margin-top: 50px;
 }
-.PlayingArea .PlayMenu .MovesMenu p {
+.PlayingArea .PlayMenu .MovesMenu .move-detail p {
   width: 350px;
   color: #b68e65;
 }

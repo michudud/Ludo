@@ -274,11 +274,14 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
                 pawnScore: pawnScore,
                 pawnScoreAdd: 1,
                 opponentScore: otherPlayers[i].score,
-                opoonentPawnScore: otherPlayersPawnScore[i],
+                opponentPawnScore: otherPlayersPawnScore[i],
                 opponentPawnScoreCapture: otherPlayerPawnScore,
                 executeMove: () => {
                   activePlayers[0][currPawn] = player.startPos;
-                  setActivePlayers(activePlayers);
+                  setActivePlayers((previousState) => [
+                    ...previousState,
+                    activePlayers,
+                  ]);
                 },
                 moveResults: () => {
                   activePlayers[i + 1][otherPlayerPawn] =
@@ -313,11 +316,14 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
                   pawnScore: pawnScore,
                   pawnScoreAdd: diceResult,
                   opponentScore: otherPlayers[i].score,
-                  opoonentPawnScore: otherPlayersPawnScore[i],
+                  opponentPawnScore: otherPlayersPawnScore[i],
                   opponentPawnScoreCapture: otherPlayerPawnScore,
                   executeMove: () => {
                     activePlayers[0][currPawn] = player[currPawn] + diceResult;
-                    setActivePlayers(activePlayers);
+                    setActivePlayers((previousState) => [
+                      ...previousState,
+                      activePlayers,
+                    ]);
                   },
                   moveResults: () => {
                     activePlayers[i + 1][otherPlayerPawn] =
@@ -367,11 +373,14 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
                 pawnScore: pawnScore,
                 pawnScoreAdd: diceResult,
                 opponentScore: otherPlayers[i].score,
-                opoonentPawnScore: otherPlayersPawnScore[i],
+                opponentPawnScore: otherPlayersPawnScore[i],
                 opponentPawnScoreCapture: otherPlayerPawnScore,
                 executeMove: () => {
                   activePlayers[0][currPawn] = setPose;
-                  setActivePlayers(activePlayers);
+                  setActivePlayers((previousState) => [
+                    ...previousState,
+                    activePlayers,
+                  ]);
                 },
                 moveResults: () => {
                   activePlayers[i + 1][otherPlayerPawn] =

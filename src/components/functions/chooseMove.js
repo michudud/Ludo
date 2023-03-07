@@ -14,9 +14,12 @@ const chooseMove = (moves, difficulty) => {
           const closestToStartPos = Math.min(
             ...minScoreMoves.map((move) => move.currPose)
           );
-          const closestToStartPawnMoves = minScoreMoves.filter(
-            (move) => move.currPose === closestToStartPos
-          );
+          let closestToStartPawnMoves = minScoreMoves;
+          if (!isNaN(closestToStartPos)) {
+            closestToStartPawnMoves = minScoreMoves.filter(
+              (move) => move.currPose === closestToStartPos
+            );
+          }
           ///
 
           ///choose random move from between moves with the same result
@@ -88,7 +91,7 @@ const chooseMove = (moves, difficulty) => {
       ///
 
       if (winningOpponents.length > 0 && opportunitiesToCapture.length > 0) {
-        ///look for opponents beeing closest to home
+        ///look for opponents beeing closest to win
         const maxOpponentsPawnScore = Math.max(
           ...opportunitiesToCapture.map((move) => move.opponentPawnScore)
         );
@@ -101,10 +104,12 @@ const chooseMove = (moves, difficulty) => {
         const closestToHomePos = Math.max(
           ...maxPawnScoreOpponents.map((move) => move.currPose)
         );
-        const closestToHomePawnMoves = maxPawnScoreOpponents.filter(
-          (move) => move.currPose === closestToHomePos
-        );
-        ///
+        let closestToHomePawnMoves = maxPawnScoreOpponents;
+        if (!isNaN(closestToHomePos)) {
+          closestToHomePawnMoves = maxPawnScoreOpponents.filter(
+            (move) => move.currPose === closestToHomePos
+          );
+        }
 
         ///choose random move from between moves with the same result
         const rndMove = Math.floor(

@@ -23,6 +23,34 @@ const PlayingArea = () => {
     }
   }, [getPlayers]);
 
+  useEffect(
+    function makeAIMove() {
+      setTimeout(() => {
+        if (activePlayers) {
+          if (activePlayers[0].user === "AI") {
+            let chceckMoves = checkPossibleMoves(
+              [...activePlayers],
+              setActivePlayers
+            );
+            diceRef.current.innerHTML = chceckMoves.dice;
+
+            if (chceckMoves.moves.length > 0) {
+              rollRef.current.disabled = true;
+              const moveIndex = chooseMove(chceckMoves.moves, "hard");
+              chceckMoves.moves[moveIndex].executeMove();
+              rollRef.current.disabled = false;
+            }
+
+            let nexTurn = [...activePlayers];
+            nexTurn.push(nexTurn.shift());
+            setActivePlayers(nexTurn);
+          }
+        }
+      }, "100");
+    },
+    [activePlayers]
+  );
+
   if (activePlayers) {
     return (
       <div className="PlayingArea">
@@ -39,21 +67,21 @@ const PlayingArea = () => {
             <button
               ref={rollRef}
               onClick={() => {
-                let chceckMoves = checkPossibleMoves(
-                  [...activePlayers],
-                  setActivePlayers
-                );
-                diceRef.current.innerHTML = chceckMoves.dice;
-                setMoves(chceckMoves.moves);
+                if (activePlayers[0].user === "Player") {
+                  let chceckMoves = checkPossibleMoves(
+                    [...activePlayers],
+                    setActivePlayers
+                  );
+                  diceRef.current.innerHTML = chceckMoves.dice;
+                  setMoves(chceckMoves.moves);
 
-                if (chceckMoves.moves.length === 0) {
-                  let nexTurn = [...activePlayers];
-                  nexTurn.push(nexTurn.shift());
-                  setActivePlayers(nexTurn);
-                } else {
-                  let moveIndex = chooseMove(chceckMoves.moves, "hard");
-                  console.log(moveIndex);
-                  rollRef.current.disabled = true;
+                  if (chceckMoves.moves.length === 0) {
+                    let nexTurn = [...activePlayers];
+                    nexTurn.push(nexTurn.shift());
+                    setActivePlayers(nexTurn);
+                  } else {
+                    rollRef.current.disabled = true;
+                  }
                 }
               }}
             >
@@ -62,10 +90,10 @@ const PlayingArea = () => {
             <div className="Dice" ref={diceRef}></div>
           </div>
           <div className="MovesMenu">
-            {moves.length > 0
+            {moves.length > 0 && activePlayers[0].user === "Player"
               ? moves.map((move) => {
                   return (
-                    <>
+                    <div className="move-detail" key={move.name}>
                       <p>{move.name}</p>
                       <button
                         onClick={() => {
@@ -79,7 +107,7 @@ const PlayingArea = () => {
                       >
                         Execute move
                       </button>
-                    </>
+                    </div>
                   );
                 })
               : null}
