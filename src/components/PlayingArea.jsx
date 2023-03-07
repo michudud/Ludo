@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Board from "./Board";
 import checkPossibleMoves from "./functions/checkPossibleMoves";
+import chooseMove from "./functions/chooseMove";
 
 const PlayingArea = () => {
   const [activePlayers, setActivePlayers] = useState();
@@ -50,6 +51,8 @@ const PlayingArea = () => {
                   nexTurn.push(nexTurn.shift());
                   setActivePlayers(nexTurn);
                 } else {
+                  let moveIndex = chooseMove(chceckMoves.moves, "hard");
+                  console.log(moveIndex);
                   rollRef.current.disabled = true;
                 }
               }}

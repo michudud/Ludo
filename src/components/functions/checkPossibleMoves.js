@@ -98,6 +98,7 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
             availableMoves.push({
               name: "move pawn " + i,
               pawn: "pawn" + i,
+              currPose: player[currPawn],
               moveScore: 4,
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
@@ -161,6 +162,7 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
             availableMoves.push({
               name: "move pawn " + i,
               pawn: "pawn" + i,
+              currPose: player[currPawn],
               moveScore: 4,
               pawnScore: pawnScore,
               pawnScoreAdd: diceResult,
@@ -306,6 +308,7 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
                     " on field " +
                     player[currPawn],
                   pawn: "pawn" + k,
+                  currPose: player[currPawn],
                   moveScore: 6,
                   pawnScore: pawnScore,
                   pawnScoreAdd: diceResult,
@@ -359,6 +362,7 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
                   " on field " +
                   player[currPawn],
                 pawn: "pawn" + k,
+                currPose: player[currPawn],
                 moveScore: 6,
                 pawnScore: pawnScore,
                 pawnScoreAdd: diceResult,
