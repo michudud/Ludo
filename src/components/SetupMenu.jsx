@@ -53,7 +53,7 @@ const SetupMenu = () => {
                 {player.color.charAt(0).toUpperCase() + player.color.slice(1)}{" "}
                 Pawns
               </label>
-              <select name="owner">
+              <select name="user">
                 <option value="Player">Player</option>
                 <option value="AI">AI</option>
                 <option value="None">None</option>
@@ -61,6 +61,14 @@ const SetupMenu = () => {
             </div>
           );
         })}
+      </div>
+      <div className="difficultySetup">
+        <label>Choose Difficulty Level</label>
+        <select name="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
       </div>
       <button onClick={startGame} className="smPlay">
         Play

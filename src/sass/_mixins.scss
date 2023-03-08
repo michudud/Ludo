@@ -1,0 +1,11 @@
+@mixin flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin bold_center_text($font_size) {
+  font-size: $font_size;
+  font-weight: 600;
+  text-align: center;
+}

@@ -1,3 +1,6 @@
+@import "_variables";
+@import "_mixins";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,103 +9,88 @@
 }
 
 body {
-  background-color: #301d17;
+  background-color: $dark_color;
 }
 
 .Game {
+  @include flex_center;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .SetupMenu {
-  width: 1250px;
-  height: 820px;
-  padding: 25px;
-  background-color: #b68e65;
+  @include flex_center;
+  @include bold_center_text(16px);
+  width: 1100px;
+  padding: 10px;
+  background-color: $light_color;
   border-radius: 10px;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
 
   .smLabel {
-    background-color: #56342a;
-    color: #b68e65;
+    background-color: $mid_color;
+    color: $light_color;
     font-size: 32px;
-    font-weight: 600;
-    text-align: center;
-    margin: 25px;
-    border-radius: 25px;
+    margin: 10px;
+    border-radius: 10px;
     padding: 20px 0 20px 0;
+    width: 1060px;
   }
 
   .smPlay {
-    background-color: #56342a;
-    color: #b68e65;
-    font-size: 32px;
-    font-weight: 600;
+    @include bold_center_text(32px);
+    width: 1060px;
+    background-color: $mid_color;
+    color: $light_color;
     border: none;
-    border-radius: 25px;
-    text-align: center;
-    margin: 25px;
+    border-radius: 10px;
+    margin: 10px;
     padding: 20px 0 20px 0;
     cursor: pointer;
   }
 
   .playersSetups {
-    display: flex;
+    @include flex_center;
     flex-direction: row;
-    justify-content: center;
 
     .playerSetup {
+      @include flex_center;
       width: 250px;
-      display: flex;
       flex-direction: column;
-      align-items: center;
-      background-color: #56342a;
-      margin: 25px;
-      border-radius: 25px;
+      background-color: $mid_color;
+      margin: 10px;
+      border-radius: 10px;
 
       label {
         width: 200px;
         padding: 10px 0 10px 0;
-        border-radius: 5px;
-        background-color: #b68e65;
-        color: #301d17;
-        font-weight: 600;
-        font-size: 16px;
-        text-align: center;
+        border-radius: 10px;
+        background-color: $light_color;
+        color: $dark_color;
       }
 
       select {
-        margin: 25px 0 25px 0;
+        @include bold_center_text(16px);
+        margin: 20px 0 20px 0;
         width: 200px;
-        font-weight: 600;
-        font-size: 16px;
         padding: 10px 0 10px 0;
-        text-align: center;
         border: none;
-        border-radius: 5px;
-        background-color: #b68e65;
-        color: #301d17;
+        border-radius: 10px;
+        background-color: $light_color;
+        color: $dark_color;
 
         option {
-          font-weight: 600;
-          font-size: 16px;
+          @include bold_center_text(16px);
         }
       }
 
       .playerBg {
+        @include flex_center;
         width: 200px;
         height: 200px;
-        margin: 25px 0 25px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 25px;
+        margin: 20px 0 20px 0;
+        border-radius: 10px;
 
         .playerPawn {
           width: 100px;
@@ -110,66 +98,91 @@ body {
           border-radius: 50px;
           border: 10px solid;
           text-align: center;
-          -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
-          -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
           box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
         }
       }
     }
   }
-}
 
-.SetupMenu.closed {
-  width: 160px;
-  height: 820px;
-  padding: 10px;
-  margin-right: 10px;
-  background-color: #b68e65;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
+  .difficultySetup {
+    @include flex_center;
+    // width: 1060px;
+    // margin: 10px;
 
-  .smLabel {
-    display: none;
-  }
-
-  .smPlay {
-    display: none;
-  }
-
-  .playersSetups {
-    flex-direction: column;
-
-    .playerSetup {
-      width: 140px;
-      height: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #56342a;
-      margin: 5px 0 5px 0;
+    label {
+      @include bold_center_text(24px);
+      margin: 10px;
+      width: 520px;
+      padding: 12px 0 12px 0;
       border-radius: 10px;
+      background-color: $mid_color;
+      color: $light_color;
+    }
+    select {
+      @include bold_center_text(24px);
+      margin: 10px;
+      width: 520px;
+      padding: 12px 0 12px 0;
+      border: none;
+      border-radius: 10px;
+      background-color: $mid_color;
+      color: $light_color;
 
-      label {
-        display: none;
+      option {
+        @include bold_center_text(24px);
       }
+    }
+  }
 
-      select {
-        display: none;
-      }
+  &.closed {
+    width: 160px;
+    height: 820px;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: $light_color;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 
-      .playerBg {
-        width: 120px;
-        height: 120px;
-        margin: 10px;
+    .smLabel,
+    .smPlay,
+    .difficultySetup {
+      display: none;
+    }
+
+    .playersSetups {
+      flex-direction: column;
+
+      .playerSetup {
+        @include flex_center;
+        flex-direction: column;
+        width: 140px;
+        height: 140px;
+        background-color: $mid_color;
+        margin: 5px 0 5px 0;
         border-radius: 10px;
 
-        .playerPawn {
-          width: 80px;
-          height: 80px;
-          border-radius: 40px;
-          border: 8px solid;
+        label {
+          display: none;
+        }
+
+        select {
+          display: none;
+        }
+
+        .playerBg {
+          width: 120px;
+          height: 120px;
+          margin: 10px;
+          border-radius: 10px;
+
+          .playerPawn {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            border: 8px solid;
+          }
         }
       }
     }
@@ -181,7 +194,7 @@ body {
   width: 1250px;
   height: 820x;
   flex-direction: row;
-  border: 10px solid #b68e65;
+  border: 10px solid $light_color;
   border-radius: 10px;
 
   .PlayMenu {
@@ -192,18 +205,18 @@ body {
       width: 200px;
       padding: 10px;
       margin: 10px;
-      border: 2px solid #b68e65;
+      border: 2px solid $light_color;
       font-size: 20px;
       font-weight: 600;
       text-align: center;
     }
 
     button {
-      color: #b68e65;
-      background-color: #56342a;
+      color: $light_color;
+      background-color: $mid_color;
       padding: 10px;
       margin: 10px;
-      border: 2px solid #b68e65;
+      border: 2px solid $light_color;
       font-size: 20px;
       font-weight: 600;
     }
@@ -212,16 +225,20 @@ body {
       display: flex;
       flex-direction: row;
 
+      p {
+        width: 150px;
+      }
+
       .Dice {
+        @include flex_center;
         width: 50px;
         margin: 10px;
         padding: 10px;
         font-size: 20px;
         font-weight: 600;
-        color: #b68e65;
-        background-color: #56342a;
-        border: 2px solid #b68e65;
-        text-align: center;
+        color: $light_color;
+        background-color: $mid_color;
+        border: 2px solid $light_color;
       }
     }
 
@@ -231,26 +248,21 @@ body {
       .move-detail {
         p {
           width: 350px;
-          color: #b68e65;
+          color: $light_color;
         }
       }
     }
   }
 }
 
-.PlayingArea.closed {
-  //display: none;
-}
-
 .Board {
   width: 800px;
   height: 800px;
-  box-sizing: border-box;
-  background-color: #301d17;
+  background-color: $dark_color;
   display: grid;
   grid-template: repeat(11, 1fr) / repeat(11, 1fr);
   gap: 2px 2px;
-  border: 2px solid #301d17;
+  border: 2px solid $dark_color;
 
   .BoardField {
     border-radius: 5px;
@@ -261,11 +273,8 @@ body {
     .Pawn {
       width: 26px;
       height: 26px;
-      background-color: black;
       border-radius: 13px;
       border: 1px solid black;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
-      -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
       box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
     }
   }

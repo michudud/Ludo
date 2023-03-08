@@ -36,7 +36,7 @@ const PlayingArea = () => {
 
             if (chceckMoves.moves.length > 0) {
               rollRef.current.disabled = true;
-              const moveIndex = chooseMove(chceckMoves.moves, "hard");
+              const moveIndex = chooseMove(chceckMoves.moves, "medium");
               chceckMoves.moves[moveIndex].executeMove();
               rollRef.current.disabled = false;
             }
