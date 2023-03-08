@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setPlayers } from "./playersSlice";
+import { setPlayers, setDifficulty } from "./playersSlice";
 import {
   redPlayer,
   greenPlayer,
@@ -10,8 +10,9 @@ import {
 
 const SetupMenu = () => {
   const dispatch = useDispatch();
-  const playersSetupRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(true);
+  const playersSetupRef = useRef(null);
+  const difficultySetupRef = useRef(null);
 
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
 
@@ -29,6 +30,7 @@ const SetupMenu = () => {
     }
     if (activePlayers.length >= 2) {
       dispatch(setPlayers(activePlayers));
+      dispatch(setDifficulty(difficultySetupRef.current.value));
       setMenuOpen(!menuOpen);
     }
   };
@@ -64,7 +66,7 @@ const SetupMenu = () => {
       </div>
       <div className="difficultySetup">
         <label>Choose Difficulty Level</label>
-        <select name="difficulty">
+        <select name="difficulty" ref={difficultySetupRef}>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>

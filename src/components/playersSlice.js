@@ -3,14 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const playersSlice = createSlice({
   name: "players",
   initialState: {
-    value: null,
+    value: {
+      players: null,
+      difficulty: null,
+    },
   },
   reducers: {
     setPlayers: (state, action) => {
-      state.value = action.payload;
+      state.value.players = action.payload;
+    },
+    setDifficulty: (state, action) => {
+      state.value.difficulty = action.payload;
     },
   },
 });
 
-export const { setPlayers } = playersSlice.actions;
+export const { setPlayers, setDifficulty } = playersSlice.actions;
 export default playersSlice.reducer;

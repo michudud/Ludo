@@ -7,21 +7,27 @@ import chooseMove from "./functions/chooseMove";
 const PlayingArea = () => {
   const [activePlayers, setActivePlayers] = useState();
   const [moves, setMoves] = useState([]);
+  const difficultyLevel = useSelector(
+    (state) => state.playersSlice.value.difficulty
+  );
 
   const rollRef = useRef(null);
   const diceRef = useRef(null);
 
-  let getPlayers = useSelector((state) => state.playersSlice.value);
+  let getPlayers = useSelector((state) => state.playersSlice.value.players);
 
-  useEffect(() => {
-    if (getPlayers) {
-      setActivePlayers(
-        getPlayers.map((a) => {
-          return { ...a };
-        })
-      );
-    }
-  }, [getPlayers]);
+  useEffect(
+    function loadPlayers() {
+      if (getPlayers) {
+        setActivePlayers(
+          getPlayers.map((a) => {
+            return { ...a };
+          })
+        );
+      }
+    },
+    [getPlayers]
+  );
 
   useEffect(
     function makeAIMove() {
@@ -36,7 +42,7 @@ const PlayingArea = () => {
 
             if (chceckMoves.moves.length > 0) {
               rollRef.current.disabled = true;
-              const moveIndex = chooseMove(chceckMoves.moves, "medium");
+              const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
               chceckMoves.moves[moveIndex].executeMove();
               rollRef.current.disabled = false;
             }
@@ -46,7 +52,7 @@ const PlayingArea = () => {
             setActivePlayers(nexTurn);
           }
         }
-      }, "100");
+      }, "1000");
     },
     [activePlayers]
   );
