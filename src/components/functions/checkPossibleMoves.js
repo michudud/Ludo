@@ -344,53 +344,48 @@ const checkPossibleMoves = (activePlayers, setActivePlayers) => {
               pawnCount = player[currPawn];
             }
 
-            let otherPawnCount;
-            if (otherPlayers[i][otherPlayerPawn] < otherPlayers[i].startPos) {
-              otherPawnCount = otherPlayers[i][otherPlayerPawn] + 40;
-            } else {
-              otherPawnCount = otherPlayers[i][otherPlayerPawn];
-            }
-            let setPose = player[currPawn] + diceResult;
-            if (setPose > 40) {
-              setPose -= 40;
-            }
-
-            if (
-              pawnCount + diceResult === otherPawnCount &&
-              pawnCount + diceResult - 40 !== otherPawnCount
-            ) {
-              availableMoves.push({
-                name:
-                  "capture " +
-                  otherPlayers[i].color +
-                  " with pawn " +
-                  k +
-                  " on field " +
-                  player[currPawn],
-                pawn: "pawn" + k,
-                currPose: player[currPawn],
-                moveScore: 6,
-                pawnScore: pawnScore,
-                pawnScoreAdd: diceResult,
-                opponentScore: otherPlayers[i].score,
-                opponentPawnScore: otherPlayersPawnScore[i],
-                opponentPawnScoreCapture: otherPlayerPawnScore,
-                executeMove: () => {
-                  activePlayers[0][currPawn] = setPose;
-                  setActivePlayers((previousState) => [
-                    ...previousState,
-                    activePlayers,
-                  ]);
-                },
-                moveResults: () => {
-                  activePlayers[i + 1][otherPlayerPawn] =
-                    j + otherPlayers[i].color[0] + "s";
-                  setActivePlayers((previousState) => [
-                    ...previousState,
-                    activePlayers,
-                  ]);
-                },
-              });
+            if (pawnCount + diceResult <= player.realEndPos) {
+              let setPose = player[currPawn] + diceResult;
+              if (setPose > 40) {
+                setPose -= 40;
+              }
+              if (
+                setPose === otherPlayers[i][otherPlayerPawn] &&
+                setPose !== otherPlayers[i].startPos
+              ) {
+                availableMoves.push({
+                  name:
+                    "capture " +
+                    otherPlayers[i].color +
+                    " with pawn " +
+                    k +
+                    " on field " +
+                    player[currPawn],
+                  pawn: "pawn" + k,
+                  currPose: player[currPawn],
+                  moveScore: 6,
+                  pawnScore: pawnScore,
+                  pawnScoreAdd: diceResult,
+                  opponentScore: otherPlayers[i].score,
+                  opponentPawnScore: otherPlayersPawnScore[i],
+                  opponentPawnScoreCapture: otherPlayerPawnScore,
+                  executeMove: () => {
+                    activePlayers[0][currPawn] = setPose;
+                    setActivePlayers((previousState) => [
+                      ...previousState,
+                      activePlayers,
+                    ]);
+                  },
+                  moveResults: () => {
+                    activePlayers[i + 1][otherPlayerPawn] =
+                      j + otherPlayers[i].color[0] + "s";
+                    setActivePlayers((previousState) => [
+                      ...previousState,
+                      activePlayers,
+                    ]);
+                  },
+                });
+              }
             }
           }
         }
