@@ -44,16 +44,19 @@ const PlayingArea = () => {
               chceckMoves.moves[moveIndex].executeMove();
               rollRef.current.disabled = false;
             }
-
-            let nexTurn = [...activePlayers];
-            nexTurn.push(nexTurn.shift());
-            setActivePlayers(nexTurn);
+            nextRound();
           }
         }
       }, "1000");
     },
     [activePlayers]
   );
+
+  const nextRound = () => {
+    let nexTurn = [...activePlayers];
+    nexTurn.push(nexTurn.shift());
+    setActivePlayers(nexTurn);
+  };
 
   if (activePlayers) {
     return (
@@ -80,9 +83,7 @@ const PlayingArea = () => {
                   setMoves(chceckMoves.moves);
 
                   if (chceckMoves.moves.length === 0) {
-                    let nexTurn = [...activePlayers];
-                    nexTurn.push(nexTurn.shift());
-                    setActivePlayers(nexTurn);
+                    nextRound();
                   } else {
                     rollRef.current.disabled = true;
                   }
@@ -103,9 +104,7 @@ const PlayingArea = () => {
                         onClick={() => {
                           move.executeMove();
                           setMoves([]);
-                          let nexTurn = [...activePlayers];
-                          nexTurn.push(nexTurn.shift());
-                          setActivePlayers(nexTurn);
+                          nextRound();
                           rollRef.current.disabled = false;
                         }}
                       >

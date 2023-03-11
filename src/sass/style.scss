@@ -27,6 +27,7 @@ body {
   background-color: $light_color;
   border-radius: 10px;
   flex-direction: column;
+  position: relative;
 
   .smLabel {
     background-color: $mid_color;
@@ -134,6 +135,26 @@ body {
     }
   }
 
+  .error-msg {
+    @include flex_center;
+    font-size: 36px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 400px;
+    height: 100px;
+    color: $error_color;
+    background-color: $light_color;
+    border: 10px solid $error_color;
+    border-radius: 10px;
+
+    &.closed {
+      display: none;
+    }
+  }
+
   &.closed {
     width: 160px;
     height: 820px;
@@ -147,7 +168,8 @@ body {
 
     .smLabel,
     .smPlay,
-    .difficultySetup {
+    .difficultySetup,
+    .error-msg {
       display: none;
     }
 

@@ -11,8 +11,10 @@ import {
 const SetupMenu = () => {
   const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(false);
   const playersSetupRef = useRef(null);
   const difficultySetupRef = useRef(null);
+  const playBtRef = useRef(null);
 
   let menuPlayers = [redPlayer, greenPlayer, yellowPlayer, bluePlayer];
 
@@ -32,6 +34,13 @@ const SetupMenu = () => {
       dispatch(setPlayers(activePlayers));
       dispatch(setDifficulty(difficultySetupRef.current.value));
       setMenuOpen(!menuOpen);
+    } else {
+      playBtRef.current.disabled = true;
+      setErrorMsg(true);
+      setTimeout(() => {
+        setErrorMsg(false);
+        playBtRef.current.disabled = false;
+      }, 1000);
     }
   };
 
@@ -72,9 +81,12 @@ const SetupMenu = () => {
           <option value="hard">Hard</option>
         </select>
       </div>
-      <button onClick={startGame} className="smPlay">
+      <button ref={playBtRef} onClick={startGame} className="smPlay">
         Play
       </button>
+      <div className={`error-msg ${errorMsg ? "" : "closed"}`}>
+        Min. 2 Players
+      </div>
     </div>
   );
 };
