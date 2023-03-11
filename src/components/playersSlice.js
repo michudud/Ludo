@@ -3,17 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const playersSlice = createSlice({
   name: "players",
   initialState: {
-    value: {
-      players: null,
-      difficulty: null,
-    },
+    players: null,
+    difficulty: null,
   },
   reducers: {
     setPlayers: (state, action) => {
-      state.value.players = action.payload;
+      state.players = action.payload;
     },
     setDifficulty: (state, action) => {
-      state.value.difficulty = action.payload;
+      state.difficulty = action.payload;
     },
   },
 });

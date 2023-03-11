@@ -7,7 +7,7 @@ Alpha version of game.
   - easy - algorithm will try to choose the worst possible move
   - medium - random move from possible moves
   - hard - algorithm will try to choose the best possible move
-- possibility to roll the dice and check every available moves
+- possibility to roll the dice and check available moves
 - move pawns around board
 
 RULES

@@ -7,14 +7,12 @@ import chooseMove from "./functions/chooseMove";
 const PlayingArea = () => {
   const [activePlayers, setActivePlayers] = useState();
   const [moves, setMoves] = useState([]);
-  const difficultyLevel = useSelector(
-    (state) => state.playersSlice.value.difficulty
-  );
+  const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
 
   const rollRef = useRef(null);
   const diceRef = useRef(null);
 
-  let getPlayers = useSelector((state) => state.playersSlice.value.players);
+  let getPlayers = useSelector((state) => state.playersSlice.players);
 
   useEffect(
     function loadPlayers() {
