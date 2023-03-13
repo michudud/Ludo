@@ -54,11 +54,11 @@ const PlayingArea = () => {
 
   const nextRound = (nextRoundPlayers) => {
     const nexTurn = [...nextRoundPlayers];
-    if (nexTurn[0].score === 400) {
-      nexTurn.shift();
-    } else {
-      nexTurn.push(nexTurn.shift());
-    }
+    //if (nexTurn[0].score === 400) {
+    //nexTurn.shift();
+    //} else {
+    nexTurn.push(nexTurn.shift());
+    //}
     setActivePlayers(nexTurn);
   };
 

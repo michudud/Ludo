@@ -1,5 +1,5 @@
 const checkPossibleMoves = (currentActivePlayers) => {
-  const diceResult = 6; //Math.floor(Math.random() * 6 + 1);
+  const diceResult = Math.floor(Math.random() * 6 + 1);
 
   let activePlayers = currentActivePlayers.map((o) => {
     return { ...o };
@@ -387,11 +387,6 @@ const checkPossibleMoves = (currentActivePlayers) => {
       );
 
       if (maxMoveScore === 10 || maxMoveScore === 6) {
-        highestScoreMove[0].executeMove();
-        for (let j = 0; j < highestScoreMove.length; j++) {
-          highestScoreMove[j].moveResults();
-        }
-
         filteredMoves.push({
           ...highestScoreMove[0],
           moveScore: maxMoveScore * highestScoreMove.length,
@@ -399,6 +394,10 @@ const checkPossibleMoves = (currentActivePlayers) => {
             highestScoreMove[0].opponentPawnScoreCapture *
             highestScoreMove.length,
           executeMove: () => {
+            highestScoreMove[0].executeMove();
+            for (let j = 0; j < highestScoreMove.length; j++) {
+              highestScoreMove[j].moveResults();
+            }
             return activePlayers;
           },
         });
