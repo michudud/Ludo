@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BoardField from "./BoardField";
 
-const Board = ({ activePlayers }) => {
+const Board = ({ activePlayers, winners, numberOfPlayers }) => {
   const [board, setBoard] = useState([
     [0, 0, 0, 0, 9, 10, 11, 0, 0, 0, 0],
     [0, "2rs", "3rs", 0, 8, "1gf", 12, 0, "3gs", "2gs", 0],
@@ -16,17 +16,24 @@ const Board = ({ activePlayers }) => {
     [0, 0, 0, 0, 31, 30, 29, 0, 0, 0, 0],
   ]);
 
+  let allPlayers;
+  if (winners.length < numberOfPlayers) {
+    allPlayers = activePlayers.concat(winners);
+  } else {
+    allPlayers = winners;
+  }
+
   return (
     <div className="Board">
       {board.map((row, rowIndex) =>
         row.map((coll, collIndex) => {
           let pawnsOnField = [];
 
-          for (let i = 0; i < activePlayers.length; i++) {
+          for (let i = 0; i < allPlayers.length; i++) {
             for (let j = 1; j <= 4; j++) {
               let currPawn = "pawn" + j + "Pos";
-              if (activePlayers[i][currPawn] === coll) {
-                pawnsOnField.push(activePlayers[i].color);
+              if (allPlayers[i][currPawn] === coll) {
+                pawnsOnField.push(allPlayers[i].color);
               }
             }
           }

@@ -9,6 +9,7 @@ const PlayingArea = () => {
   const [moves, setMoves] = useState([]);
   const [continueMsg, setContinueMsg] = useState(false);
   const [winners, setWinners] = useState([]);
+  const [numberOfPlayers, setNumberOfPlayers] = useState();
   const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
 
   const rollRef = useRef(null);
@@ -24,6 +25,7 @@ const PlayingArea = () => {
             return { ...a };
           })
         );
+        setNumberOfPlayers(getPlayers.length);
       }
     },
     [getPlayers]
@@ -51,14 +53,10 @@ const PlayingArea = () => {
     [activePlayers]
   );
 
-  useEffect(() => {
-    console.log(winners);
-  }, [winners]);
-
   const nextRound = (nextRoundPlayers) => {
     const nextTurn = [...nextRoundPlayers];
     if (nextTurn[0].score === 400 && nextTurn.length > 1) {
-      setWinners([...winners, nextTurn[0].color]);
+      setWinners([...winners, nextTurn[0]]);
       nextTurn.shift();
     } else {
       nextTurn.push(nextTurn.shift());
@@ -66,14 +64,18 @@ const PlayingArea = () => {
     if (nextTurn.length >= 1 && activePlayers[0].score < 400) {
       setActivePlayers(nextTurn);
     } else {
-      setWinners([...winners, nextTurn[0].color]);
+      setWinners([...winners, nextTurn[0]]);
     }
   };
 
   if (activePlayers) {
     return (
       <div className="PlayingArea">
-        <Board activePlayers={activePlayers} />
+        <Board
+          activePlayers={activePlayers}
+          winners={winners}
+          numberOfPlayers={numberOfPlayers}
+        />
         <div className="PlayMenu">
           <div className="Controls">
             <p
