@@ -9,3 +9,16 @@
   font-weight: 600;
   text-align: center;
 }
+
+@mixin modal_msg {
+  @include flex_center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  &.closed {
+    display: none;
+  }
+}

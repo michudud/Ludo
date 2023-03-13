@@ -204,13 +204,13 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 36px;
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 100;
+  font-size: 36px;
   width: 400px;
   height: 100px;
   color: #cc0000;
@@ -362,6 +362,33 @@ body {
 .PlayingArea .PlayMenu .MovesMenu .move-detail p {
   width: 350px;
   color: #b68e65;
+}
+.PlayingArea .continue-msg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 20px;
+  width: 400px;
+  height: 100px;
+  color: #cc0000;
+  background-color: #b68e65;
+  border: 10px solid #cc0000;
+  border-radius: 10px;
+}
+.PlayingArea .continue-msg.closed {
+  display: none;
 }
 
 .Board {

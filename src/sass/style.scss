@@ -136,23 +136,14 @@ body {
   }
 
   .error-msg {
-    @include flex_center;
+    @include modal_msg;
     font-size: 36px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
     width: 400px;
     height: 100px;
     color: $error_color;
     background-color: $light_color;
     border: 10px solid $error_color;
     border-radius: 10px;
-
-    &.closed {
-      display: none;
-    }
   }
 
   &.closed {
@@ -274,6 +265,17 @@ body {
         }
       }
     }
+  }
+
+  .continue-msg {
+    @include modal_msg;
+    font-size: 20px;
+    width: 400px;
+    height: 100px;
+    color: $error_color;
+    background-color: $light_color;
+    border: 10px solid $error_color;
+    border-radius: 10px;
   }
 }
 

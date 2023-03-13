@@ -7,6 +7,8 @@ import chooseMove from "./functions/chooseMove";
 const PlayingArea = () => {
   const [activePlayers, setActivePlayers] = useState();
   const [moves, setMoves] = useState([]);
+  const [continueMsg, setContinueMsg] = useState(false);
+  const [winners, setWinners] = useState([]);
   const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
 
   const rollRef = useRef(null);
@@ -27,34 +29,35 @@ const PlayingArea = () => {
     [getPlayers]
   );
 
-  useEffect(
-    function makeAIMove() {
-      setTimeout(() => {
-        if (activePlayers) {
-          if (activePlayers[0].user === "AI") {
-            let chceckMoves = checkPossibleMoves(
-              [...activePlayers],
-              setActivePlayers
-            );
-            diceRef.current.innerHTML = chceckMoves.dice;
+  useEffect(() => {
+    if (activePlayers) {
+      makeAIMove();
+    }
+  }, [activePlayers]);
 
-            if (chceckMoves.moves.length > 0) {
-              rollRef.current.disabled = true;
-              const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
-              chceckMoves.moves[moveIndex].executeMove();
-              rollRef.current.disabled = false;
-            }
-            nextRound();
-          }
+  const makeAIMove = () => {
+    setTimeout(() => {
+      if (activePlayers[0].user === "AI") {
+        let chceckMoves = checkPossibleMoves(activePlayers, setActivePlayers);
+        diceRef.current.innerHTML = chceckMoves.dice;
+        if (chceckMoves.moves.length > 0) {
+          rollRef.current.disabled = true;
+          const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
+          chceckMoves.moves[moveIndex].executeMove();
+          rollRef.current.disabled = false;
         }
-      }, "1000");
-    },
-    [activePlayers]
-  );
+        nextRound();
+      }
+    }, "1000");
+  };
 
   const nextRound = () => {
     let nexTurn = [...activePlayers];
-    nexTurn.push(nexTurn.shift());
+    if (nexTurn[0].score === 400) {
+      nexTurn.shift();
+    } else {
+      nexTurn.push(nexTurn.shift());
+    }
     setActivePlayers(nexTurn);
   };
 
@@ -115,6 +118,11 @@ const PlayingArea = () => {
                 })
               : null}
           </div>
+        </div>
+        <div className={`continue-msg ${continueMsg ? "" : "closed"}`}>
+          Player won
+          <button>Continue</button>
+          <button>Restart</button>
         </div>
       </div>
     );
