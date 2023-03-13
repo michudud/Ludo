@@ -38,21 +38,22 @@ const PlayingArea = () => {
   const makeAIMove = () => {
     setTimeout(() => {
       if (activePlayers[0].user === "AI") {
-        let chceckMoves = checkPossibleMoves(activePlayers, setActivePlayers);
+        let chceckMoves = checkPossibleMoves(activePlayers);
         diceRef.current.innerHTML = chceckMoves.dice;
         if (chceckMoves.moves.length > 0) {
           rollRef.current.disabled = true;
           const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
-          chceckMoves.moves[moveIndex].executeMove();
+          nextRound(chceckMoves.moves[moveIndex].executeMove());
           rollRef.current.disabled = false;
+        } else {
+          nextRound(activePlayers);
         }
-        nextRound();
       }
-    }, "1000");
+    }, "100");
   };
 
-  const nextRound = () => {
-    let nexTurn = [...activePlayers];
+  const nextRound = (nextRoundPlayers) => {
+    const nexTurn = [...nextRoundPlayers];
     if (nexTurn[0].score === 400) {
       nexTurn.shift();
     } else {
@@ -78,15 +79,12 @@ const PlayingArea = () => {
               ref={rollRef}
               onClick={() => {
                 if (activePlayers[0].user === "Player") {
-                  let chceckMoves = checkPossibleMoves(
-                    [...activePlayers],
-                    setActivePlayers
-                  );
+                  let chceckMoves = checkPossibleMoves(activePlayers);
                   diceRef.current.innerHTML = chceckMoves.dice;
                   setMoves(chceckMoves.moves);
 
                   if (chceckMoves.moves.length === 0) {
-                    nextRound();
+                    nextRound(activePlayers);
                   } else {
                     rollRef.current.disabled = true;
                   }
@@ -105,9 +103,9 @@ const PlayingArea = () => {
                       <p>{move.name}</p>
                       <button
                         onClick={() => {
-                          move.executeMove();
+                          const playersAfterMove = move.executeMove();
                           setMoves([]);
-                          nextRound();
+                          nextRound(playersAfterMove);
                           rollRef.current.disabled = false;
                         }}
                       >
