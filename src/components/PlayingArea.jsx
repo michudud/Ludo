@@ -29,37 +29,45 @@ const PlayingArea = () => {
     [getPlayers]
   );
 
-  useEffect(() => {
-    if (activePlayers) {
-      makeAIMove();
-    }
-  }, [activePlayers]);
-
-  const makeAIMove = () => {
-    setTimeout(() => {
-      if (activePlayers[0].user === "AI") {
-        let chceckMoves = checkPossibleMoves(activePlayers);
-        diceRef.current.innerHTML = chceckMoves.dice;
-        if (chceckMoves.moves.length > 0) {
-          rollRef.current.disabled = true;
-          const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
-          nextRound(chceckMoves.moves[moveIndex].executeMove());
-          rollRef.current.disabled = false;
-        } else {
-          nextRound(activePlayers);
-        }
+  useEffect(
+    function makeAIMove() {
+      if (activePlayers) {
+        setTimeout(() => {
+          if (activePlayers[0].user === "AI") {
+            let chceckMoves = checkPossibleMoves(activePlayers);
+            diceRef.current.innerHTML = chceckMoves.dice;
+            if (chceckMoves.moves.length > 0) {
+              rollRef.current.disabled = true;
+              const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
+              nextRound(chceckMoves.moves[moveIndex].executeMove());
+              rollRef.current.disabled = false;
+            } else {
+              nextRound(activePlayers);
+            }
+          }
+        }, "100");
       }
-    }, "100");
-  };
+    },
+    [activePlayers]
+  );
+
+  useEffect(() => {
+    console.log(winners);
+  }, [winners]);
 
   const nextRound = (nextRoundPlayers) => {
-    const nexTurn = [...nextRoundPlayers];
-    //if (nexTurn[0].score === 400) {
-    //nexTurn.shift();
-    //} else {
-    nexTurn.push(nexTurn.shift());
-    //}
-    setActivePlayers(nexTurn);
+    const nextTurn = [...nextRoundPlayers];
+    if (nextTurn[0].score === 400 && nextTurn.length > 1) {
+      setWinners([...winners, nextTurn[0].color]);
+      nextTurn.shift();
+    } else {
+      nextTurn.push(nextTurn.shift());
+    }
+    if (nextTurn.length >= 1 && activePlayers[0].score < 400) {
+      setActivePlayers(nextTurn);
+    } else {
+      setWinners([...winners, nextTurn[0].color]);
+    }
   };
 
   if (activePlayers) {

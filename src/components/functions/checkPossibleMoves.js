@@ -395,9 +395,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
             highestScoreMove.length,
           executeMove: () => {
             highestScoreMove[0].executeMove();
-            for (let j = 0; j < highestScoreMove.length; j++) {
-              highestScoreMove[j].moveResults();
-            }
+            highestScoreMove.map((move) => move.moveResults());
             return activePlayers;
           },
         });
