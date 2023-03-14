@@ -6,10 +6,11 @@ import chooseMove from "./functions/chooseMove";
 
 const PlayingArea = () => {
   const [activePlayers, setActivePlayers] = useState();
-  const [moves, setMoves] = useState([]);
-  const [continueMsg, setContinueMsg] = useState(false);
   const [winners, setWinners] = useState([]);
   const [numberOfPlayers, setNumberOfPlayers] = useState();
+  const [moves, setMoves] = useState([]);
+  const [continueMsg, setContinueMsg] = useState(false);
+  const [continuePlayers, setContinuePlayers] = useState();
   const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
 
   const rollRef = useRef(null);
@@ -33,7 +34,7 @@ const PlayingArea = () => {
 
   useEffect(
     function makeAIMove() {
-      if (activePlayers) {
+      if (activePlayers && !continueMsg) {
         setTimeout(() => {
           if (activePlayers[0].user === "AI") {
             let chceckMoves = checkPossibleMoves(activePlayers);
@@ -47,24 +48,36 @@ const PlayingArea = () => {
               nextRound(activePlayers);
             }
           }
-        }, "100");
+        }, "1000");
       }
     },
     [activePlayers]
   );
 
+  useEffect(
+    function continuePlay() {
+      if (continuePlayers && !continueMsg) {
+        setActivePlayers([...continuePlayers]);
+      }
+    },
+    [continueMsg]
+  );
+
   const nextRound = (nextRoundPlayers) => {
     const nextTurn = [...nextRoundPlayers];
-    if (nextTurn[0].score === 400 && nextTurn.length > 1) {
+
+    if (nextTurn[0].score === 400) {
       setWinners([...winners, nextTurn[0]]);
-      nextTurn.shift();
-    } else {
+      setContinueMsg(true);
+      rollRef.current.disabled = true;
+      if (nextTurn.length >= 1) {
+        nextTurn.shift();
+        setActivePlayers(nextTurn);
+        setContinuePlayers(nextTurn);
+      }
+    } else if (nextTurn.length >= 1) {
       nextTurn.push(nextTurn.shift());
-    }
-    if (nextTurn.length >= 1 && activePlayers[0].score < 400) {
       setActivePlayers(nextTurn);
-    } else {
-      setWinners([...winners, nextTurn[0]]);
     }
   };
 
@@ -80,7 +93,8 @@ const PlayingArea = () => {
           <div className="Controls">
             <p
               style={{
-                backgroundColor: activePlayers[0].color,
+                backgroundColor:
+                  activePlayers.length > 0 ? activePlayers[0].color : "violet",
               }}
             >
               Current Player
@@ -128,8 +142,16 @@ const PlayingArea = () => {
           </div>
         </div>
         <div className={`continue-msg ${continueMsg ? "" : "closed"}`}>
-          Player won
-          <button>Continue</button>
+          {winners.length > 0
+            ? winners[winners.length - 1].color + " Player Won"
+            : null}
+          <button
+            onClick={() => {
+              setContinueMsg(false);
+            }}
+          >
+            Continue
+          </button>
           <button>Restart</button>
         </div>
       </div>
