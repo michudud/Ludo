@@ -33,7 +33,10 @@ const Board = ({ activePlayers, winners, numberOfPlayers }) => {
             for (let j = 1; j <= 4; j++) {
               let currPawn = "pawn" + j + "Pos";
               if (allPlayers[i][currPawn] === coll) {
-                pawnsOnField.push(allPlayers[i].color);
+                pawnsOnField.push({
+                  color: allPlayers[i].color,
+                  nr: j,
+                });
               }
             }
           }

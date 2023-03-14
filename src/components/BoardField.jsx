@@ -51,18 +51,20 @@ const BoardField = ({ field, pawnsOnField }) => {
       key={Math.random()}
     >
       {pawnsOnField.length > 0
-        ? pawnsOnField.map((color) => {
+        ? pawnsOnField.map((pawn) => {
             return (
               <div
                 className="Pawn"
                 style={{
-                  backgroundColor: color,
+                  backgroundColor: pawn.color,
                   width: pawnSize + "px",
                   height: pawnSize + "px",
                   borderRadius: pawnSize / 2 + "px",
                 }}
                 key={Math.random()}
-              ></div>
+              >
+                {pawn.nr}
+              </div>
             );
           })
         : null}

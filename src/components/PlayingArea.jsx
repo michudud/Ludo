@@ -106,7 +106,7 @@ const PlayingArea = () => {
             <p
               style={
                 activePlayers.length > 0
-                  ? { backgroundColor: activePlayers[0].color, color: "black" }
+                  ? { backgroundColor: activePlayers[0].color2 }
                   : null
               }
             >

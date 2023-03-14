@@ -298,13 +298,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                 player[currPawn] + diceResult !== otherPlayers[i].startPos
               ) {
                 availableMoves.push({
-                  name:
-                    "capture " +
-                    otherPlayers[i].color +
-                    " with pawn " +
-                    k +
-                    " on field " +
-                    player[currPawn],
+                  name: "capture " + otherPlayers[i].color + " with pawn " + k,
                   pawn: "pawn" + k,
                   currPose: player[currPawn],
                   moveScore: 6,
@@ -341,13 +335,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                 setPose !== otherPlayers[i].startPos
               ) {
                 availableMoves.push({
-                  name:
-                    "capture " +
-                    otherPlayers[i].color +
-                    " with pawn " +
-                    k +
-                    " on field " +
-                    player[currPawn],
+                  name: "capture " + otherPlayers[i].color + " with pawn " + k,
                   pawn: "pawn" + k,
                   currPose: player[currPawn],
                   moveScore: 6,
