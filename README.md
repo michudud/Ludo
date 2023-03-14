@@ -9,6 +9,7 @@ Alpha version of game.
   - hard - algorithm will try to choose the best possible move
 - possibility to roll the dice and check available moves
 - move pawns around board
+- continue or restart game after one of the players win
 
 RULES
 

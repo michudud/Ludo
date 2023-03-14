@@ -9,7 +9,10 @@ const PlayingArea = () => {
   const [winners, setWinners] = useState([]);
   const [numberOfPlayers, setNumberOfPlayers] = useState();
   const [moves, setMoves] = useState([]);
-  const [continueMsg, setContinueMsg] = useState(false);
+  const [continueMsg, setContinueMsg] = useState({
+    status: false,
+    action: null,
+  });
   const [continuePlayers, setContinuePlayers] = useState();
   const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
 
@@ -34,7 +37,7 @@ const PlayingArea = () => {
 
   useEffect(
     function makeAIMove() {
-      if (activePlayers && !continueMsg) {
+      if (activePlayers && !continueMsg.status) {
         setTimeout(() => {
           if (activePlayers[0].user === "AI") {
             let chceckMoves = checkPossibleMoves(activePlayers);
@@ -48,7 +51,7 @@ const PlayingArea = () => {
               nextRound(activePlayers);
             }
           }
-        }, "1000");
+        }, "100");
       }
     },
     [activePlayers]
@@ -56,8 +59,17 @@ const PlayingArea = () => {
 
   useEffect(
     function continuePlay() {
-      if (continuePlayers && !continueMsg) {
-        setActivePlayers([...continuePlayers]);
+      if (continuePlayers && !continueMsg.status) {
+        if (continueMsg.action === "continue") {
+          setActivePlayers([...continuePlayers]);
+        } else {
+          setActivePlayers(
+            getPlayers.map((a) => {
+              return { ...a };
+            })
+          );
+          setWinners([]);
+        }
       }
     },
     [continueMsg]
@@ -68,7 +80,7 @@ const PlayingArea = () => {
 
     if (nextTurn[0].score === 400) {
       setWinners([...winners, nextTurn[0]]);
-      setContinueMsg(true);
+      setContinueMsg({ ...continueMsg, status: true });
       rollRef.current.disabled = true;
       if (nextTurn.length >= 1) {
         nextTurn.shift();
@@ -92,10 +104,11 @@ const PlayingArea = () => {
         <div className="PlayMenu">
           <div className="Controls">
             <p
-              style={{
-                backgroundColor:
-                  activePlayers.length > 0 ? activePlayers[0].color : "violet",
-              }}
+              style={
+                activePlayers.length > 0
+                  ? { backgroundColor: activePlayers[0].color, color: "black" }
+                  : null
+              }
             >
               Current Player
             </p>
@@ -141,18 +154,32 @@ const PlayingArea = () => {
               : null}
           </div>
         </div>
-        <div className={`continue-msg ${continueMsg ? "" : "closed"}`}>
-          {winners.length > 0
-            ? winners[winners.length - 1].color + " Player Won"
-            : null}
+        <div className={`continue-msg ${continueMsg.status ? "" : "closed"}`}>
+          <p>
+            {winners.length > 0
+              ? winners[winners.length - 1].color.charAt(0).toUpperCase() +
+                winners[winners.length - 1].color.slice(1) +
+                " Player Won"
+              : null}
+          </p>
           <button
             onClick={() => {
-              setContinueMsg(false);
+              if (activePlayers.length > 0) {
+                setContinueMsg({ status: false, action: "continue" });
+                rollRef.current.disabled = false;
+              }
             }}
           >
             Continue
           </button>
-          <button>Restart</button>
+          <button
+            onClick={() => {
+              setContinueMsg({ status: false, action: "restart" });
+              rollRef.current.disabled = false;
+            }}
+          >
+            Restart
+          </button>
         </div>
       </div>
     );

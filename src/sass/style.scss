@@ -215,23 +215,22 @@ body {
     width: 430px;
 
     p {
+      @include bold_center_text(20px);
+      color: $light_color;
+      background-color: $mid_color;
       width: 200px;
       padding: 10px;
       margin: 10px;
       border: 2px solid $light_color;
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
     }
 
     button {
+      @include bold_center_text(20px);
       color: $light_color;
       background-color: $mid_color;
       padding: 10px;
       margin: 10px;
       border: 2px solid $light_color;
-      font-size: 20px;
-      font-weight: 600;
     }
 
     .Controls {
@@ -269,13 +268,33 @@ body {
 
   .continue-msg {
     @include modal_msg;
-    font-size: 20px;
+    @include flex_center;
+    flex-direction: column;
+    padding: 10px;
     width: 400px;
-    height: 100px;
-    color: $error_color;
+    color: $mid_color;
     background-color: $light_color;
-    border: 10px solid $error_color;
+    border-top: 10px solid $bluePlayer_color;
+    border-right: 10px solid $redPlayer_color;
+    border-bottom: 10px solid $greenPlayer_color;
+    border-left: 10px solid $yellowPlayer_color;
     border-radius: 10px;
+
+    p {
+      @include bold_center_text(24px);
+      margin: 10px;
+      padding: 10px;
+    }
+
+    button {
+      color: $light_color;
+      background-color: $mid_color;
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      font-size: 20px;
+      font-weight: 600;
+    }
   }
 }
 

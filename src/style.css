@@ -308,22 +308,25 @@ body {
   width: 430px;
 }
 .PlayingArea .PlayMenu p {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #b68e65;
+  background-color: #56342a;
   width: 200px;
   padding: 10px;
   margin: 10px;
   border: 2px solid #b68e65;
+}
+.PlayingArea .PlayMenu button {
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-}
-.PlayingArea .PlayMenu button {
   color: #b68e65;
   background-color: #56342a;
   padding: 10px;
   margin: 10px;
   border: 2px solid #b68e65;
-  font-size: 20px;
-  font-weight: 600;
 }
 .PlayingArea .PlayMenu .Controls {
   display: -webkit-box;
@@ -379,16 +382,41 @@ body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 100;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
   width: 400px;
-  height: 100px;
-  color: #cc0000;
+  color: #56342a;
   background-color: #b68e65;
-  border: 10px solid #cc0000;
+  border-top: 10px solid #4285f4;
+  border-right: 10px solid #ea4335;
+  border-bottom: 10px solid #34a853;
+  border-left: 10px solid #fbbc05;
   border-radius: 10px;
 }
 .PlayingArea .continue-msg.closed {
   display: none;
+}
+.PlayingArea .continue-msg p {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+.PlayingArea .continue-msg button {
+  color: #b68e65;
+  background-color: #56342a;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .Board {
