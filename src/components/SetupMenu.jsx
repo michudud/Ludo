@@ -31,6 +31,11 @@ const SetupMenu = () => {
       }
     }
     if (activePlayers.length >= 2) {
+      let randomStart = Math.floor(Math.random() * activePlayers.length);
+      for (let i = 0; i < randomStart; i++) {
+        activePlayers.push(activePlayers.shift());
+      }
+      console.log(randomStart, activePlayers);
       dispatch(setPlayers(activePlayers));
       dispatch(setDifficulty(difficultySetupRef.current.value));
       setMenuOpen(!menuOpen);
