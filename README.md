@@ -13,7 +13,9 @@ Alpha version of game.
 
 RULES
 
+- random player starts the game
 - to leave a base you need to throw a six on the dice
+- after throwing six on the dice player has additional round
 - you can have multiple pawns on the same field but not on house fields
 - you can capture opponents
 - you are safe on your starting field

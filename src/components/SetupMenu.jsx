@@ -35,7 +35,6 @@ const SetupMenu = () => {
       for (let i = 0; i < randomStart; i++) {
         activePlayers.push(activePlayers.shift());
       }
-      console.log(randomStart, activePlayers);
       dispatch(setPlayers(activePlayers));
       dispatch(setDifficulty(difficultySetupRef.current.value));
       setMenuOpen(!menuOpen);

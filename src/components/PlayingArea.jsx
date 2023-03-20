@@ -45,10 +45,13 @@ const PlayingArea = () => {
             if (chceckMoves.moves.length > 0) {
               rollRef.current.disabled = true;
               const moveIndex = chooseMove(chceckMoves.moves, difficultyLevel);
-              nextRound(chceckMoves.moves[moveIndex].executeMove());
+              nextRound(
+                chceckMoves.moves[moveIndex].executeMove(),
+                chceckMoves.dice
+              );
               rollRef.current.disabled = false;
             } else {
-              nextRound(activePlayers);
+              nextRound(activePlayers, chceckMoves.dice);
             }
           }
         }, "100");
@@ -75,7 +78,7 @@ const PlayingArea = () => {
     [continueMsg]
   );
 
-  const nextRound = (nextRoundPlayers) => {
+  const nextRound = (nextRoundPlayers, diceResult) => {
     const nextTurn = [...nextRoundPlayers];
 
     if (nextTurn[0].score === 400) {
@@ -83,12 +86,16 @@ const PlayingArea = () => {
       setContinueMsg({ ...continueMsg, status: true });
       rollRef.current.disabled = true;
       if (nextTurn.length >= 1) {
-        nextTurn.shift();
+        if (diceResult !== 6) {
+          nextTurn.shift();
+        }
         setActivePlayers(nextTurn);
         setContinuePlayers(nextTurn);
       }
     } else if (nextTurn.length >= 1) {
-      nextTurn.push(nextTurn.shift());
+      if (diceResult !== 6) {
+        nextTurn.push(nextTurn.shift());
+      }
       setActivePlayers(nextTurn);
     }
   };
@@ -121,7 +128,7 @@ const PlayingArea = () => {
                   setMoves(chceckMoves.moves);
 
                   if (chceckMoves.moves.length === 0) {
-                    nextRound(activePlayers);
+                    nextRound(activePlayers, chceckMoves.dice);
                   } else {
                     rollRef.current.disabled = true;
                   }
@@ -142,7 +149,10 @@ const PlayingArea = () => {
                         onClick={() => {
                           const playersAfterMove = move.executeMove();
                           setMoves([]);
-                          nextRound(playersAfterMove);
+                          nextRound(
+                            playersAfterMove,
+                            Number(diceRef.current.innerHTML)
+                          );
                           rollRef.current.disabled = false;
                         }}
                       >
