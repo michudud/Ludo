@@ -1,0 +1,96 @@
+.PlayingArea {
+  display: flex;
+  width: 1250px;
+  height: 820x;
+  flex-direction: row;
+  border: 10px solid $light_color;
+  border-radius: 10px;
+
+  .PlayMenu {
+    height: 800px;
+    width: 430px;
+
+    p {
+      @include bold_center_text(20px);
+      color: $light_color;
+      background-color: $mid_color;
+      width: 200px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid $light_color;
+    }
+
+    button {
+      @include bold_center_text(20px);
+      color: $light_color;
+      background-color: $mid_color;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid $light_color;
+    }
+
+    .Controls {
+      display: flex;
+      flex-direction: row;
+
+      p {
+        width: 150px;
+        color: black;
+      }
+
+      .Dice {
+        @include flex_center;
+        width: 50px;
+        margin: 10px;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 600;
+        color: $light_color;
+        background-color: $mid_color;
+        border: 2px solid $light_color;
+      }
+    }
+
+    .MovesMenu {
+      margin-top: 50px;
+
+      .move-detail {
+        p {
+          width: 350px;
+          color: $light_color;
+        }
+      }
+    }
+  }
+
+  .continue-msg {
+    @include modal_msg;
+    @include flex_center;
+    flex-direction: column;
+    padding: 10px;
+    width: 400px;
+    color: $mid_color;
+    background-color: $light_color;
+    border-top: 10px solid $bluePlayer_color;
+    border-right: 10px solid $redPlayer_color;
+    border-bottom: 10px solid $greenPlayer_color;
+    border-left: 10px solid $yellowPlayer_color;
+    border-radius: 10px;
+
+    p {
+      @include bold_center_text(24px);
+      margin: 10px;
+      padding: 10px;
+    }
+
+    button {
+      color: $light_color;
+      background-color: $mid_color;
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.Board {
+  width: 800px;
+  height: 800px;
+  background-color: $dark_color;
+  display: grid;
+  grid-template: repeat(11, 1fr) / repeat(11, 1fr);
+  gap: 2px 2px;
+  border: 2px solid $dark_color;
+}

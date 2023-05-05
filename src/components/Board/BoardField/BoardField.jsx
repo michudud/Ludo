@@ -1,5 +1,3 @@
-import React from "react";
-
 const BoardField = ({ field, pawnsOnField }) => {
   let fieldColor;
   if ((typeof field === "string" && field.includes("r")) || field === 1) {

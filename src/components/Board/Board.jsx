@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import BoardField from "./BoardField";
 
 const Board = ({ activePlayers, winners, numberOfPlayers }) => {

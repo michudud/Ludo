@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setPlayers, setDifficulty } from "./playersSlice";
+import { setPlayers, setDifficulty } from "../../redux/playersSlice";
 import {
   redPlayer,
   greenPlayer,
   yellowPlayer,
   bluePlayer,
-} from "./functions/playersData";
+} from "./data/playersData";
 
 const SetupMenu = () => {
   const dispatch = useDispatch();

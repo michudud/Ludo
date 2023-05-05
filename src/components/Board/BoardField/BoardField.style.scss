@@ -1,0 +1,15 @@
+.BoardField {
+  border-radius: 5px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  .Pawn {
+    @include flex_center;
+    @include bold_center_text(14px);
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 1);
+  }
+}

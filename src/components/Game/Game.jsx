@@ -1,6 +1,5 @@
-import React from "react";
-import PlayingArea from "./PlayingArea";
-import SetupMenu from "./SetupMenu";
+import PlayingArea from "../PlayingArea";
+import SetupMenu from "../SetupMenu";
 
 const Game = () => {
   return (

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import Board from "./Board";
+import Board from "../Board";
 import checkPossibleMoves from "./functions/checkPossibleMoves";
 import chooseMove from "./functions/chooseMove";
 
