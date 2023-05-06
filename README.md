@@ -28,6 +28,8 @@ User can choose wheather to play with other players locally or duel with AI on t
 - Install: `npm install`
 - Run: `npm start`
 
+- Compile SASS after changes in .scss files `npm run compile:sass`
+
 ### Stack
 
 - JavaScript

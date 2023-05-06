@@ -8,7 +8,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:sass": "node-sass scss/style.scss css/style.css",
+    "compile:sass": "node-sass src/sass/style.scss src/style.css",
     "scss": "node-sass --watch assets/scss -o assets/css"
   },
   "keywords": [],
