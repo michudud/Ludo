@@ -29,13 +29,17 @@
       border: 2px solid $light_color;
     }
 
+    button:hover {
+      transform: scale(1.05);
+    }
+
     .Controls {
       display: flex;
       flex-direction: row;
 
       p {
         width: 150px;
-        color: black;
+        color: $dark_color;
       }
 
       .Dice {
@@ -60,6 +64,10 @@
         button {
           width: 350px;
           padding: 20px;
+        }
+
+        button:hover {
+          transform: scale(1.1);
         }
       }
     }

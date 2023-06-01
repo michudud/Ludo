@@ -41,7 +41,7 @@ export const yellowPlayer = {
 };
 
 export const bluePlayer = {
-  color: "blue",
+  color: "#0D0DCF",
   color2: "#4285F4",
   user: "Player",
   score: 0,

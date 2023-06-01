@@ -54,10 +54,11 @@ const BoardField = ({ field, pawnsOnField }) => {
               <div
                 className="Pawn"
                 style={{
-                  backgroundColor: pawn.color,
+                  backgroundColor: pawn.color2,
                   width: pawnSize + "px",
                   height: pawnSize + "px",
                   borderRadius: pawnSize / 2 + "px",
+                  border: `3px solid ${pawn.color}`,
                 }}
                 key={Math.random()}
               >

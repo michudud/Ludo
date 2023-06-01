@@ -35,6 +35,7 @@ const Board = ({ activePlayers, winners, numberOfPlayers }) => {
               if (allPlayers[i][currPawn] === coll) {
                 pawnsOnField.push({
                   color: allPlayers[i].color,
+                  color2: allPlayers[i].color2,
                   nr: j,
                 });
               }
