@@ -3,6 +3,8 @@
 One of the most popular strategy board game for 2-4 players.
 User can choose wheather to play with other players locally or duel with AI on three different levels of difficulty.
 
+#### [Check it out on github.io](https://michudud.github.io/Ludo/ "Ludo-github.io")
+
 ## Features
 
 - Possibility to choose who plays (Player, AI, None) (min: 2, max: 4)
