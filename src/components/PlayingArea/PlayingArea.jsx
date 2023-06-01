@@ -144,7 +144,6 @@ const PlayingArea = () => {
               ? moves.map((move) => {
                   return (
                     <div className="move-detail" key={move.name}>
-                      <p>{move.name}</p>
                       <button
                         onClick={() => {
                           const playersAfterMove = move.executeMove();
@@ -156,7 +155,7 @@ const PlayingArea = () => {
                           rollRef.current.disabled = false;
                         }}
                       >
-                        Execute move
+                        {move.name}
                       </button>
                     </div>
                   );

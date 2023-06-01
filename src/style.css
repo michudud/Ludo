@@ -125,11 +125,24 @@
   border: 2px solid #b68e65;
 }
 .PlayingArea .PlayMenu .MovesMenu {
-  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 30px;
 }
-.PlayingArea .PlayMenu .MovesMenu .move-detail p {
+.PlayingArea .PlayMenu .MovesMenu .move-detail button {
   width: 350px;
-  color: #b68e65;
+  padding: 20px;
 }
 .PlayingArea .continue-msg {
   display: -webkit-box;
