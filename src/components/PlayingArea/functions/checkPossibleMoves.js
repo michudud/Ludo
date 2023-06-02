@@ -114,7 +114,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
         } else {
           if (player[currPawn] + diceResult - 40 <= 4) {
             let placeInHouse =
-              player[currPawn] + diceResult - 40 + player.color[0] + "f";
+              player[currPawn] + diceResult - 40 + player.name[0] + "f";
 
             let checkForSpace = true;
             for (let j = 1; j < 5; j++) {
@@ -178,11 +178,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
         } else {
           if (pawnCount + diceResult - player.realEndPos <= 4) {
             let placeInHouse =
-              pawnCount +
-              diceResult -
-              player.realEndPos +
-              player.color[0] +
-              "f";
+              pawnCount + diceResult - player.realEndPos + player.name[0] + "f";
 
             let checkForSpace = true;
             for (let j = 1; j < 5; j++) {
@@ -209,7 +205,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
     } else if (player[currPawn].includes("f")) {
       if (Number(player[currPawn][0]) + diceResult <= 4) {
         let placeInHouse =
-          Number(player[currPawn][0]) + diceResult + player.color[0] + "f";
+          Number(player[currPawn][0]) + diceResult + player.name[0] + "f";
 
         let checkForSpace = true;
         for (let j = 1; j < 5; j++) {
@@ -269,7 +265,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
               availableMoves.push({
                 name:
                   "capture " +
-                  otherPlayers[i].color +
+                  otherPlayers[i].name +
                   " leaving base with " +
                   player[currPawn],
                 pawn: "pawn" + k,
@@ -284,7 +280,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                 },
                 moveResults: () => {
                   activePlayers[i + 1][otherPlayerPawn] =
-                    j + otherPlayers[i].color[0] + "s";
+                    j + otherPlayers[i].name[0] + "s";
                 },
               });
             }
@@ -298,7 +294,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                 player[currPawn] + diceResult !== otherPlayers[i].startPos
               ) {
                 availableMoves.push({
-                  name: "capture " + otherPlayers[i].color + " with pawn " + k,
+                  name: "capture " + otherPlayers[i].name + " with pawn " + k,
                   pawn: "pawn" + k,
                   currPose: player[currPawn],
                   moveScore: 6,
@@ -312,7 +308,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                   },
                   moveResults: () => {
                     activePlayers[i + 1][otherPlayerPawn] =
-                      j + otherPlayers[i].color[0] + "s";
+                      j + otherPlayers[i].name[0] + "s";
                   },
                 });
               }
@@ -335,7 +331,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                 setPose !== otherPlayers[i].startPos
               ) {
                 availableMoves.push({
-                  name: "capture " + otherPlayers[i].color + " with pawn " + k,
+                  name: "capture " + otherPlayers[i].name + " with pawn " + k,
                   pawn: "pawn" + k,
                   currPose: player[currPawn],
                   moveScore: 6,
@@ -349,7 +345,7 @@ const checkPossibleMoves = (currentActivePlayers) => {
                   },
                   moveResults: () => {
                     activePlayers[i + 1][otherPlayerPawn] =
-                      j + otherPlayers[i].color[0] + "s";
+                      j + otherPlayers[i].name[0] + "s";
                   },
                 });
               }

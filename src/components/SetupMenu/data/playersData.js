@@ -1,4 +1,5 @@
 export const redPlayer = {
+  name: "red",
   color: "red",
   color2: "#EA4335",
   user: "Player",
@@ -13,6 +14,7 @@ export const redPlayer = {
 };
 
 export const greenPlayer = {
+  name: "green",
   color: "green",
   color2: "#34A853",
   user: "Player",
@@ -27,6 +29,7 @@ export const greenPlayer = {
 };
 
 export const yellowPlayer = {
+  name: "yellow",
   color: "yellow",
   color2: "#FBBC05",
   user: "Player",
@@ -41,6 +44,7 @@ export const yellowPlayer = {
 };
 
 export const bluePlayer = {
+  name: "blue",
   color: "#0D0DCF",
   color2: "#4285F4",
   user: "Player",
