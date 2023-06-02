@@ -15,6 +15,7 @@ const PlayingArea = () => {
   });
   const [continuePlayers, setContinuePlayers] = useState();
   const difficultyLevel = useSelector((state) => state.playersSlice.difficulty);
+  const aiMoveTime = "500";
 
   const rollRef = useRef(null);
   const diceRef = useRef(null);
@@ -54,7 +55,7 @@ const PlayingArea = () => {
               nextRound(activePlayers, chceckMoves.dice);
             }
           }
-        }, "100");
+        }, aiMoveTime);
       }
     },
     [activePlayers]
